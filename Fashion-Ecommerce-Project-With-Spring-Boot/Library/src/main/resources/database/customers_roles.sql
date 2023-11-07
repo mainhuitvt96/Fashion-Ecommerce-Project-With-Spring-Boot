@@ -1,0 +1,10 @@
+INSERT INTO fashion_ecommerce.customers_roles (customer_id, role_id) VALUES (1, 2);
+INSERT INTO fashion_ecommerce.customers_roles (customer_id, role_id) VALUES (2, 2);
+INSERT INTO fashion_ecommerce.customers_roles (customer_id, role_id) VALUES (3, 2);
+INSERT INTO fashion_ecommerce.customers_roles (customer_id, role_id) VALUES (5, 2);
+INSERT INTO fashion_ecommerce.customers_roles (customer_id, role_id) VALUES (6, 2);
+INSERT INTO fashion_ecommerce.customers_roles (customer_id, role_id) VALUES (7, 2);
+INSERT INTO fashion_ecommerce.customers_roles (customer_id, role_id) VALUES (8, 2);
+INSERT INTO fashion_ecommerce.customers_roles (customer_id, role_id) VALUES (9, 2);
+INSERT INTO fashion_ecommerce.customers_roles (customer_id, role_id) VALUES (10, 2);
+INSERT INTO fashion_ecommerce.customers_roles (customer_id, role_id) VALUES (11, 2);

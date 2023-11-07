@@ -1,0 +1,9 @@
+INSERT INTO fashion_ecommerce.admins (admin_id, first_name, image, last_name, password, username) VALUES (1, 'admin', null, 'admin', '$2a$10$5FhE/Qi85NWNfvfymSazS.VtpIlbkWimmnrF/qjFEW67o6L5FRtYu', 'admin@gmail.com');
+INSERT INTO fashion_ecommerce.admins (admin_id, first_name, image, last_name, password, username) VALUES (2, 'admin2', null, 'admin2', '$2a$10$/oFLk.6/9xYIl5lpszgleeLZOwvgTQUdF/zE3VIgUhy1DqiNzQNpK', 'admin2@gmail.com');
+INSERT INTO fashion_ecommerce.admins (admin_id, first_name, image, last_name, password, username) VALUES (3, 'minhdao', null, 'minhdao', '$2a$10$HaZPeNPnTMikkR/Qda0QB.3GtUshHtYc1aAws8AytgpXlPfAADCGK', 'minhdao@gmail.com');
+INSERT INTO fashion_ecommerce.admins (admin_id, first_name, image, last_name, password, username) VALUES (4, 'Thuan', null, 'Thuan', '$2a$10$YfBXz0qjddj7n551Okngo.oo3/2gW1Xsnukk4NaRnAmvKuFLAhyP6', 'thuan@gmail.com');
+INSERT INTO fashion_ecommerce.admins (admin_id, first_name, image, last_name, password, username) VALUES (5, 'Ngoc', null, 'Duy', '$2a$10$mC4t4ZmNdrmgq4yeMnc.4O8J1degUabb.lQB/z6rbu7UmBOWLGajW', 'duyngoc@gmail.com');
+INSERT INTO fashion_ecommerce.admins (admin_id, first_name, image, last_name, password, username) VALUES (6, 'Ngọc', null, 'Nguyễn', '$2a$10$7C4oBQaDIOwEgsA5Wn5R1efp68feGOx5Aj6SLtNLG1h7OHlCB42BS', 'ngocnguyen@gmail.com');
+INSERT INTO fashion_ecommerce.admins (admin_id, first_name, image, last_name, password, username) VALUES (7, 'Duy', null, 'Ngọc', '$2a$10$OmX.PNQLXpvvcIT197kvwOvlLCO/ocMPyX4hk.k9dXYRuKMhr6FDK', 'duyngoc2@gmail.com');
+INSERT INTO fashion_ecommerce.admins (admin_id, first_name, image, last_name, password, username) VALUES (8, 'Chính', null, 'Phạm', '$2a$10$AUrpChOdK1Goeww12KpeDeA3.l4bPGKnqALSN.GFyjNCTYUYdXiSq', '');
+INSERT INTO fashion_ecommerce.admins (admin_id, first_name, image, last_name, password, username) VALUES (9, 'Chính', null, 'Phạm', '$2a$10$O7z72FlgAelZLWPu8PEw..G3GTm8svf17/7lNfl8jLt7hFkA4/4GS', 'chinhpham@gmail.com');

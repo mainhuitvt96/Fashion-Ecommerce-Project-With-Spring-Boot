@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+
+
+<head th:replace="fragments::header"></head>
+
+<body>
+    <!-- Topbar Start -->
+    <div th:replace="fragments::topbar"></div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid-fluid-fluid">
+        <div class="row border-top px-xl-5">
+            <div th:replace="fragments::category-other-page" ></div>
+            <!--Start menu-->
+            <div class="col-lg-9">
+                <div th:replace="fragments::menu"></div>
+            </div>
+
+            <!--End menu-->
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+
+    <!-- Page Header Start -->
+    <div class="container-fluid bg-secondary mb-5">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">Shopping Cart</h1>
+            <div class="d-inline-flex">
+                <p class="m-0"><a href="">Home</a></p>
+                <p class="m-0 px-2">-</p>
+                <p class="m-0">Shopping Cart</p>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+    <!-- main content -->
+    <div class="container">
+        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 edit_information">
+            <form th:action="@{/update-profile}"  method="post" th:object="${customer}">
+                <h3 class="text-center">Personal Information</h3>
+                <div class="text alert alert-warning" th:if="${error}">
+                    <p th:text="${error}"></p>
+                </div>
+                <div th:if="${success}" class="text-center alert alert-success">
+                    <p th:text="${success}"></p>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <input readonly type="hidden"  th:field="*{id}" name="firstName" class="form-control" value="" required >
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="profile_details_text">First Name:</label>
+                            <input readonly type="text"  th:field="*{firstName}" name="firstName" class="form-control" value="" required >
+                        </div>
+                        <div class="alert alert-warning"
+                             th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
+                        </div>
+
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="profile_details_text">Last Name: </label>
+                            <input readonly type="text" th:field="*{lastName}" name="lastName" class="form-control" value="" required>
+                        </div>
+                        <div class="alert alert-warning"
+                             th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="profile_details_text">Email Address (username):</label>
+                            <input   type="email" th:field="*{username}" id="username" name="email" class="form-control" required readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="profile_details_text">Phone Number:</label>
+                            <input type="tel" th:field="*{phoneNumber}" id="phoneNumber" name="phoneNumber" class="form-control" value="" required pattern=[0-9]{10}>
+                        </div>
+                        <div class="alert alert-warning"
+                             th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="profile_details_text">Address:</label>
+                            <input type="text" th:field="*{address}"
+                                   th:placeholder="${customer.address != null} ? ${customer.address} : 'Enter your address'"
+                                   id="address"  name="address" class="form-control" value="">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="profile_details_text">City:</label>
+                            <select class="form-control" id="city" th:field="*{city}" name="country" required>
+                                <option th:each="city : ${cities}"
+                                        th:value="${city.id}"
+                                        th:text="${city.name}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="profile_details_text">Country:</label>
+                            <select class="form-control" id="country" th:field="*{country}" name="country" required>
+                                <option th:each="country : ${countries}"
+                                        th:value="${country.id}"
+                                        th:text="${country.name}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row" style="align-content: center; text-align: center">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 submit">
+                        <div class="form-group">
+                            <input type="submit" class="btn" style="background-color: #D19C97; color: #1C1C1C; font-weight: bold" value="Save">
+                        </div>
+                    </div>
+                </div>
+                <a th:href="@{/change-password}" style="margin-top: 5px;" class="btn btn-primary text-center buttonWrapper">Change password</a>
+            </form>
+        </div>
+    </div>
+    <!-- main content -->
+
+
+    <!-- Footer Start -->
+    <div th:replace="fragments::footer"></div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <div th:replace="fragments::script"></div>
+
+</body>
+
+</html>

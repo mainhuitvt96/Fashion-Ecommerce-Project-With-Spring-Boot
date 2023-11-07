@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+
+<head th:replace="fragments::header"></head>
+
+<body>
+    <!-- Topbar Start -->
+    <div th:replace="fragments::topbar" ></div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid">
+        <div class="row border-top px-xl-5">
+            <div th:replace="fragments::category-other-page" ></div>
+            <!--Start menu-->
+            <div class="col-lg-9">
+                <div th:replace="fragments::menu"></div>
+            </div>
+
+            <!--End menu-->
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+
+    <!-- Page Header Start -->
+    <div class="container-fluid bg-secondary mb-5">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">Checkout</h1>
+            <div class="d-inline-flex">
+                <p class="m-0"><a href="">Home</a></p>
+                <p class="m-0 px-2">-</p>
+                <p class="m-0">Checkout</p>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+    <!-- Checkout Start -->
+
+    <div class="container-fluid pt-5">
+        <div class="row px-xl-5">
+            <form th:action="@{/add-order}" method="post" th:object="${shoppingCart}">
+                <div th:object="${customer}">
+                    <div class="col-lg-8">
+                        <div class="mb-4">
+                            <h4 class="font-weight-semi-bold mb-4">Billing Address</h4>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label>First Name</label>
+                                    <input readonly th:field="*{firstName}" class="form-control" type="text" placeholder="John">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>Last Name</label>
+                                    <input readonly th:field="*{lastName}" class="form-control" type="text" placeholder="Doe">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>E-mail</label>
+                                    <input readonly th:field="*{username}" type="email" class="form-control" placeholder="example@email.com">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>Phone Number</label>
+                                    <input readonly th:field="*{phoneNumber}" class="form-control" type="text" placeholder="+123 456 789">
+                                </div>
+
+                                <div class="col-md-6 form-group">
+                                    <label>Address</label>
+                                    <input readonly th:field="*{address}" class="form-control" type="text" placeholder="+123 456 789">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>City:</label>
+                                    <input readonly th:field="*{city.name}" class="form-control" type="text">
+                                </div>
+
+
+                                <!--Để dành xài sau
+                                <div class="col-md-12 form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="newaccount">
+                                        <label class="custom-control-label" for="newaccount">Create an account</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="shipto">
+                                        <label class="custom-control-label" for="shipto"  data-toggle="collapse" data-target="#shipping-address">Ship to different address</label>
+                                    </div>
+                                </div> *
+                               Để dành xài sau-->
+                                <div class="col-md-12 form-group">
+                                    <div class="custom-control">
+                                        <a th:href="@{/account}" class="btn btn-primary">Change information</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+
+                        <input type="hidden" name="id" th:value="${id}">
+
+                        <div class="card border-secondary mb-5">
+                            <div class="card-header bg-secondary border-0">
+                                <h4 class="font-weight-semi-bold m-0">Order Total</h4>
+                            </div>
+                                <div class="card-body">
+                                    <h5 class="font-weight-medium mb-3">Products</h5>
+                                    <!--Sản phẩm trong list thanh toán-->
+                                    <div th:each="item:${shoppingCart.getCartItems()}" class="d-flex justify-content-between">
+                                        <p th:text="${item.product.name}"></p>
+                                        <p>
+                                            <span th:text="${' (' + item.quantity + ') * '}"></span>
+                                            <span th:text="${item.unitPrice * item.quantity}"></span>
+                                        </p>
+
+                                    </div>
+                                    <!--End Sản phẩm trong list thanh toán-->
+                                    <hr class="mt-0">
+                                    <div class="d-flex justify-content-between mb-3 pt-1">
+                                        <h6 class="font-weight-medium">Total quantity</h6>
+                                        <h6 class="font-weight-medium" th:text="${shoppingCart.totalItems}"></h6>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-3 pt-1">
+                                        <h6 class="font-weight-medium">Subtotal</h6>
+                                        <h6 class="font-weight-medium" th:text="${#numbers.formatCurrency(shoppingCart.totalPrice)}"></h6>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-3 pt-1">
+                                        <h6 class="font-weight-medium">Tax</h6>
+                                        <h6 class="font-weight-medium" th:text="${#numbers.formatCurrency(shoppingCart.totalPrice*0.1)}"></h6>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <h6 class="font-weight-medium">Shipping</h6>
+                                        <h6 class="font-weight-medium">Free</h6>
+                                    </div>
+                                </div>
+                            <div class="card-footer border-secondary bg-transparent">
+                                <div class="d-flex justify-content-between mt-2">
+                                    <h5 class="font-weight-bold">Total</h5>
+                                    <h5 class="font-weight-bold" th:text="${#numbers.formatCurrency( shoppingCart.totalPrice + shoppingCart.totalPrice * 0.1)}"></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card border-secondary mb-5">
+                            <div class="card-header bg-secondary border-0">
+                                <h4 class="font-weight-semi-bold m-0">Payment</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" name="cod" id="cod">
+                                        <label class="custom-control-label" for="cod">Cash on Delivery (COD)</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" name="payment" id="paypal">
+                                        <label class="custom-control-label" for="paypal">Paypal</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" name="payment" id="directcheck">
+                                        <label class="custom-control-label" for="directcheck">Direct Check</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
+                                        <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer border-secondary bg-transparent">
+                                <button  type="submit" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3" value="Place Order">Place Order</button>
+                            </div>
+                        </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Checkout End -->
+
+
+    <!-- Footer Start -->
+    <div th:replace="fragments::footer"></div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <div th:replace="fragments::script"></div>
+</body>
+
+</html>

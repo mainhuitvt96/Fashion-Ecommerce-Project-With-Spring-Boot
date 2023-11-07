@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+
+<head th:replace="fragments::header"></head>
+
+<body>
+    <!-- Topbar Start -->
+    <div th:replace="fragments::topbar" ></div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid">
+        <div class="row border-top px-xl-5">
+            <div th:replace="fragments::category-other-page" ></div>
+            <!--Start menu-->
+            <div class="col-lg-9">
+                <div th:replace="fragments::menu"></div>
+            </div>
+
+            <!--End menu-->
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+
+    <!-- Page Header Start -->
+    <div class="container-fluid bg-secondary mb-5">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">Checkout</h1>
+            <div class="d-inline-flex">
+                <p class="m-0"><a href="">Home</a></p>
+                <p class="m-0 px-2">-</p>
+                <p class="m-0">Order</p>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+    <!-- Order Start -->
+
+        <div class="cart-box-main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div th:if="${success}" class="text-center alert-success alert">
+                        <p th:text="${success}"></p>
+                        </div>
+                        <div class="table-main table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr style="background-color: #D19C97; color: #1C1C1C; font-weight: bold; text-align: center">
+<!--                                    <th class="order-date">No.</th>-->
+                                    <th class="order-date">Order Date</th>
+                                    <th>Delivery Date</th>
+                                    <th class="price-pr">Order Status</th>
+                                    <th class="quantity-box">Quantity</th>
+                                    <th>Tax</th>
+                                    <th class="total-pr">Payment Method</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody style="text-align: center">
+                                <tr th:each="order: ${orders}">
+
+                                    <td class="order-date">
+                                        <span><b th:text="${order.orderDate}"></b></span>
+                                    </td>
+                                    <td class="name-pr">
+                                        <a th:if = "${order.accept != null}" href="#">
+                                            [(${order.deliveryDate})]
+                                        </a>
+                                    </td>
+                                    <td class="price-pr">
+                                        <p th:text="${order.orderStatus}"></p>
+                                    </td>
+                                    <td class="quantity-box" th:text="${order.quantity}"> </td>
+                                    <td class="total-pr">
+                                        <p style="color: red">$ [(${order.totalPrice})]</p>
+                                    </td>
+                                    <td class="total-pr" style="color: black">
+                                        <span></span>[(${order.paymentMethod})]</span>
+                                    </td>
+                                    <td>
+                                        <a th:href="@{/cancel-order/(id = ${order.id})}" class="button-cancel">Cancel</a>
+                                    </td>
+                                    </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- Order End -->
+
+
+    <!-- Footer Start -->
+    <div th:replace="fragments::footer"></div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <div th:replace="fragments::script"></div>
+</body>
+
+</html>
